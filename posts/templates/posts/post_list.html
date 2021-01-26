@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'post_list.css' %}">
+{% endblock css %}
+
+{% block main_container %}
+    <div class="container">
+        {% for post in object_list %}
+            <div id="post-{{post.pk}}" class="post">
+                <div class="img-container">
+                    <img src="{{post.image.url}}" alt="image">
+                </div>
+                <div class="text-container">
+                    <div class="text-container-up">
+                        <div class="title">{{post.title}}</div>
+                        <div class="content">{{post.content|linebreaks}}</div>
+                    </div>
+                    <div class="text-container-down">
+                        <div class="comment-label">댓글</div>
+                        <ul class="comment-container">
+                            {% for comment in post.comments.all %}
+                                <li data-comment-pk="{{comment.pk}}" id="comment-{{comment.pk}}" class="comment"><span>{{comment.content}}</span><button onclick="onClickCommentDeleteBtn({{comment.pk}}, {{post.pk}})">삭제</button></li>
+                            {% endfor %}
+                        </ul>
+                        <div class="like-container">
+                        {% if post.like %}
+                            <i class="fas fa-heart" onclick="onClickLikeBtn({{post.pk}})"></i>
+                            <span>이 게시물에 좋아요를 누르셨습니다!</span>
+                        {% else %}
+                            <i class="far fa-heart" onclick="onClickLikeBtn({{post.pk}})"></i>
+                            <span>게시물이 마음에 드시면 좋아요를 눌러주세요!</span>
+                        {% endif %}
+                        </div>
+                        <div class="comment-input-container" >
+                            <textarea name="" id="" cols="30" rows="10" placeholder="댓글 달기..."></textarea>
+                            <button onclick="onClickCommentCreateBtn({{post.pk}})">게시</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock main_container %}
+
+{% block script %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{% static 'comment_modify.js' %}"></script>
+<script src="{% static 'comment_create.js' %}"></script>
+<script src="{% static 'comment_delete.js' %}"></script>
+<script src="{% static 'post_like.js' %}"></script>
+{% endblock script %}
