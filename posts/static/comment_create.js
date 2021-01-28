@@ -5,6 +5,9 @@ const onClickCommentCreateBtn = async (postPk) => {
     `#post-${postPk} .comment-input-container textarea`
   );
   const content = textarea.value;
+  if (!content) {
+    return;
+  }
   // axios의 request에 csrf token을 추가한다.
   axios.defaults.xsrfCookieName = "csrftoken";
   axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";

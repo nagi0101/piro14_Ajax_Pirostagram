@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin-top: -50px;
+  margin-bottom: -50px;
+  padding-top: 50px;
+}
+
+.container form {
+  border: 1px solid gainsboro;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 20px rgb(200, 200, 200);
+}
+
+.container form p {
+  margin: 10px 0px;
+}
+
+.container form p > input[type="text"],
+.container form p > textarea {
+  width: 100%;
+  border: 1px solid gainsboro;
+  padding: 20px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  outline: none;
+  transition: 0.3s;
+}
+
+.container form p > textarea {
+  resize: none;
+}
+
+.container form p > input[type="text"]:focus,
+.container form p > textarea:focus {
+  border: 1px solid skyblue;
+}
+
+.container form input[type="submit"],
+.container form input[type="file"] {
+  border: 1px solid gainsboro;
+  background-color: white;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+.container form input[type="submit"]:active,
+.container form input[type="file"]:active {
+  border: 1px solid skyblue;
+  background-color: rgb(163, 229, 255);
+  color: white;
+}

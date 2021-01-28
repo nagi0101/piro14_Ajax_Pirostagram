@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView
 from django.http import JsonResponse
 from .models import Post, Comment
 import json
@@ -22,6 +23,17 @@ class PostList(ListView):
 
 
 post_list = PostList.as_view()
+
+
+class PostCreate(CreateView):
+    model = Post
+    fields = ["title", "content", "image"]
+
+    def get_success_url(self):
+        return reverse("posts:post_list")
+
+
+post_create = PostCreate.as_view()
 
 
 def comment_create(request):

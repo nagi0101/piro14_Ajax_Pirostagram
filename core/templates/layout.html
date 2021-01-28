@@ -14,8 +14,8 @@
 <body>
     <header>
         <div class=""></div>
-        <div class="">Pirostagram</div>
-        <div class=""><a href="">게시물 작성</a></div>
+        <div class="header_logo"><a href="{% url 'posts:post_list' %}">Pirostagram</a></div>
+        <div class=""><a href="{% url 'posts:post_create' %}">게시물 작성</a></div>
     </header>
     {% block main_container %}
     {% endblock main_container %}
